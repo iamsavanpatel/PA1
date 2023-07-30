@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello NodeJS AJAX</title>
+</head>
+<body>
+  <h1 id="helloMessage">Loading...</h1>
+  <button id="fetchButton">Fetch Hello</button>
+  <script>
+    const displayMessage = (message) => {
+      const helloMessageElement = document.getElementById('helloMessage');
+      helloMessageElement.textContent = message;
+    };
+
+    const fetchHello = () => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', '/gethello', true);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = xhr.responseText;
+            displayMessage(response);
+          } else {
+            displayMessage('Error fetching data.');
+          }
+        }
+      };
+      xhr.send();
+    };
+
+    const fetchButton = document.getElementById('fetchButton');
+    fetchButton.addEventListener('click', fetchHello);
+  </script>
+</body>
+</html>
