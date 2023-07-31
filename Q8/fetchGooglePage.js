@@ -1,28 +1,20 @@
 const fetch = require('node-fetch');
 
-async function fetchGooglePage() {
+async function fetchGoogleHomePage() {
+  const url = 'https://www.google.com';
+
   try {
-    const url = 'https://www.google.com';
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch Google page. Status: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch data. Status: ${response.status}`);
     }
 
     const data = await response.text();
-    return data;
+    console.log(data);
   } catch (error) {
-    console.error('Error fetching Google page:', error.message);
-    throw error;
+    console.error('Error occurred:', error.message);
   }
 }
 
-// Call the function and handle the result
-fetchGooglePage()
-  .then((data) => {
-    console.log('Google page content:');
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error('Error:', error.message);
-  });
+fetchGoogleHomePage();

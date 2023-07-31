@@ -13,7 +13,7 @@ async function connectDatabase() {
     console.log('Connected to the database.');
 
     const insertQuery = 'INSERT INTO employee (name, age, department) VALUES (?, ?, ?)';
-    const insertValues = ['sawan', 21, 'Bio'];
+    const insertValues = ['jinal', 24, 'Math'];
     const [insertResult] = await connection.query(insertQuery, insertValues);
     console.log('Inserted a new record into the employee table:', insertResult);
 
